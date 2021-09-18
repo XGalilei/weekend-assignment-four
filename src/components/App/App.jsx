@@ -7,7 +7,8 @@ function App() {
   //holds the items in the gallery
   const [galleryList, setGalleryList] = useState([]);
   const [description, setDescription] = useState();
-  let [imageLikes, setImageLikes] = useState(1);
+  let [imageLikes, setImageLikes] = useState(0);
+  const [imageMode, setImageMode] = useState(true);
 
   useEffect(() => {
     fetchGallery();
@@ -31,6 +32,14 @@ function App() {
     console.log(imageLikes);
   }
 
+  const switchMode = () => {
+    setImageMode(!imageMode);
+    console.log('testing:', imageMode);
+    //return <div> {imageMode ? <img onClick={() => switchMode()} 
+    //src="images/goat_small.jpg" /> : <div className = "desc"></div>}
+    //</div>;
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -38,11 +47,15 @@ function App() {
       </header>
       <p>Gallery goes here</p>
       <div>
-        <img onClick={() => console.log("testing")} 
+        <img onClick={() => switchMode()} 
         src="images/goat_small.jpg" />
         <br/>
-        <button onClick= {()=> likeImage()}>Like Button</button>
-        <p>Nobody likes me, everybody hates me, I guess I'll go eat worms!</p>
+        <div className="desc"><p>Script</p></div>
+        {switchMode}
+        <button onClick= {()=> likeImage(imageLikes + 1)}>Like Button</button>
+        {imageLikes > 0 ? <p>This image has {imageLikes} likes!</p> : 
+        <p>This image has no likes</p>
+        }
       </div>
       
     </div>
