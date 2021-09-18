@@ -1,8 +1,11 @@
-# Project Name
+# Weekend Assignment Four: Gallery of My Life
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
 
 ## Description
+
+''Duration: Weekend Sprint''
+
+A gallery of items relevant to my life, built in React. 
 
 Your project description goes here. What problem did you solve? How did you solve it?
 
