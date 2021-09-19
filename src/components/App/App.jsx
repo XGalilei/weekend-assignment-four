@@ -29,6 +29,7 @@ function App() {
     });
   };
 
+  //adds an additional like to the image with the matching ID
   const likeImage = (itemID) => {
     axios.put(`/gallery/like/${itemID}`)
     .then(response => {
@@ -37,20 +38,6 @@ function App() {
     console.log(imageLikes);
   }
 
-  const switchMode = (itemID) => {
-    setImageMode(!imageMode);
-    console.log('testing:', imageMode);
-    //return <div> {imageMode ? <img onClick={() => switchMode()} 
-    //src="images/goat_small.jpg" /> : <div className = "desc"></div>}
-    //</div>;
-  };
-
-  const testProps = {
-    id: 1,
-    path: "images/goat_small.jpg",
-    description: 'A picture of a goat',
-    likes: 0
-  }
 
   return (
     <div className="App">
@@ -70,8 +57,3 @@ function App() {
 }
 
 export default App;
-//<GalleryItem item = {testProps}
-        //imageMode = {imageMode}
-//        switchMode = {switchMode}
-//        likeImage = {likeImage}
-//        />

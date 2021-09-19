@@ -16,7 +16,7 @@ function GalleryItem(props) {
     }
     
 
-    return <div>
+    return <div className = "gallItem">
         {mode ? imgPage(): descPage()}<br/>
         <button onClick= {()=> props.likeImage(props.item.id)}>Like Button</button>
         <p>This image has {props.item.likes} likes</p>
