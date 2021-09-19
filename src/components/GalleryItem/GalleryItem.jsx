@@ -1,7 +1,25 @@
+import { useState } from 'react';
+import './GalleryItem.css';
+
 function GalleryItem(props) {
-    return <div key = {props.id}>
-        <img src = {props.path} /> <br/>
-        <button onClick = {}>Like Button</button>
+
+    let [mode, setMode] = useState(true);
+
+    const descPage = () => {
+        return <div className = "desc" onClick= {() => setMode(!mode)}>
+            <p>{props.item.description}</p></div>
+    }
+
+    const imgPage = () => {
+        return <img src = {props.item.path} onClick= 
+            {() => setMode(!mode)}/>;
+    }
+    
+
+    return <div>
+        {mode ? imgPage(): descPage()}<br/>
+        <button onClick= {()=> props.likeImage(props.item.id)}>Like Button</button>
+        <p>This image has {props.item.likes} likes</p>
     </div>;
 }
 

@@ -2,6 +2,8 @@ import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './App.css';
+import GalleryItem from '../GalleryItem/GalleryItem.jsx';
+import GalleryList from '../GalleryList/GalleryList.jsx';
 
 function App() {
   //holds the items in the gallery
@@ -27,18 +29,28 @@ function App() {
     });
   };
 
-  const likeImage = ()=> {
-    setImageLikes(imageLikes + 1);
+  const likeImage = (itemID) => {
+    axios.put(`/gallery/like/${itemID}`)
+    .then(response => {
+      fetchGallery();
+    })
     console.log(imageLikes);
   }
 
-  const switchMode = () => {
+  const switchMode = (itemID) => {
     setImageMode(!imageMode);
     console.log('testing:', imageMode);
     //return <div> {imageMode ? <img onClick={() => switchMode()} 
     //src="images/goat_small.jpg" /> : <div className = "desc"></div>}
     //</div>;
   };
+
+  const testProps = {
+    id: 1,
+    path: "images/goat_small.jpg",
+    description: 'A picture of a goat',
+    likes: 0
+  }
 
   return (
     <div className="App">
@@ -47,19 +59,19 @@ function App() {
       </header>
       <p>Gallery goes here</p>
       <div>
-        <img onClick={() => switchMode()} 
-        src="images/goat_small.jpg" />
-        <br/>
-        <div className="desc"><p>Script</p></div>
-        {switchMode}
-        <button onClick= {()=> likeImage(imageLikes + 1)}>Like Button</button>
-        {imageLikes > 0 ? <p>This image has {imageLikes} likes!</p> : 
-        <p>This image has no likes</p>
-        }
+        
       </div>
+      <GalleryList list = {galleryList}
+      likeImage = {likeImage}
+      />
       
     </div>
   );
 }
 
 export default App;
+//<GalleryItem item = {testProps}
+        //imageMode = {imageMode}
+//        switchMode = {switchMode}
+//        likeImage = {likeImage}
+//        />
